@@ -24,20 +24,22 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Column(
-        children: <Widget>[
-          Card(
-            // card takes a child width untill it has a parent width defined to it
-            child: Container(
-              // we used container because to assign the text a size and break the dependency it has
-              width: double.infinity,
-              child: Text('Chart'),
-              color: Colors.blue,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Card(
+              // card takes a child width untill it has a parent width defined to it
+              child: Container(
+                // we used container because to assign the text a size and break the dependency it has
+                width: double.infinity,
+                child: Text('Chart'),
+                color: Colors.blue,
+              ),
+              elevation: 5,
             ),
-            elevation: 5,
-          ),
-          UserTransactions()
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }

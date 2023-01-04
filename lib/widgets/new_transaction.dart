@@ -4,10 +4,11 @@ class NewTransaction extends StatelessWidget {
   final titleController =
       TextEditingController(); // controllers are used to keep track of the changes made in the field and save them.
   final amountController = TextEditingController();
+  final Function addTx;
+  NewTransaction(this.addTx);
   @override
   Widget build(BuildContext context) {
-    return 
-    Card(
+    return Card(
       elevation: 5,
       child: Container(
         padding: EdgeInsets.all(10),
@@ -30,8 +31,10 @@ class NewTransaction extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
-                print(titleController.text);
-                print(amountController.text);
+                addTx(
+                  titleController.text,
+                  double.parse(amountController.text),
+                );
               },
               child: Text('Add Transaction'),
               textColor: Colors.purple,
