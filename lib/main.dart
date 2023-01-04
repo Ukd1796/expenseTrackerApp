@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,7 @@ class MyHomePage extends StatelessWidget {
       amount: 69.90,
       date: DateTime.now(),
     ),
-      Transaction(
+    Transaction(
       id: 't2',
       title: 'task2',
       amount: 99.90,
@@ -37,7 +38,6 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-
           Card(
             // card takes a child width untill it has a parent width defined to it
             child: Container(
@@ -48,12 +48,50 @@ class MyHomePage extends StatelessWidget {
             ),
             elevation: 5,
           ),
-          Column(children:transcations.map((tx) {
-            return Card(child:Text(tx.title),
-            );
-          }).toList(),
-        
-      ),
+          Column(
+            children: transcations.map((tx) {
+              return Card(
+                child: Row(children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 50,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Rs ${tx.amount}', // this form of writing a string is known as string interpolation
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple[200]),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(tx.title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text(
+                        DateFormat.yMMMd().format(tx.date),
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
