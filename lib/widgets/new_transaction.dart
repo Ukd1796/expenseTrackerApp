@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
-  final titleController =
-      TextEditingController(); // controllers are used to keep track of the changes made in the field and save them.
-  final amountController = TextEditingController();
+class NewTransaction extends StatefulWidget {
   final Function addTx;
+  NewTransaction(this.addTx);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+  // controllers are used to keep track of the changes made in the field and save them.
+  final amountController = TextEditingController();
+
   void submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
@@ -12,13 +20,14 @@ class NewTransaction extends StatelessWidget {
     if (enteredAmount <= 0 || enteredTitle.isEmpty) {
       return;
     }
-    addTx(
+    widget.addTx(
       enteredTitle,
       enteredAmount,
     );
+
+    Navigator.of(context).pop(); // it pops off the context sheet that is at the top.
   }
 
-  NewTransaction(this.addTx);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -31,7 +40,7 @@ class NewTransaction extends StatelessWidget {
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
-              onSubmitted: (_)=>submitData(),
+              onSubmitted: (_) => submitData(),
 
               // onChanged: (value) {
               //   titleInput = value;

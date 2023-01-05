@@ -12,7 +12,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+          primarySwatch: Colors
+              .purple, // this is used to generate all the different colors of the primary color mentioned to give an overall theme to the app
+          accentColor: Colors.amber,
+          fontFamily: 'QuickSand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+            headline6: TextStyle(
+                 fontFamily: 'OpenSans',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+            )
+          ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          )),
       home: MyHomePage(),
     );
   }
@@ -60,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return GestureDetector(
           onTap: () {},
           child: NewTransaction(_addNewTransaction),
-          behavior:
-              HitTestBehavior.opaque, // does not close the sheet when tapped on it
+          behavior: HitTestBehavior
+              .opaque, // does not close the sheet when tapped on it
         );
       },
     );
@@ -70,12 +91,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Flutter App'), actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.add),
-          onPressed: () => _startAddNewTransaction(context),
-        )
-      ]),
+      appBar: AppBar(
+          title: Text(
+            'Personal Expenses',
+            style: TextStyle(fontFamily: 'Open Sans'),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () => _startAddNewTransaction(context),
+            )
+          ]),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
