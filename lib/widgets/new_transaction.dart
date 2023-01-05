@@ -5,6 +5,19 @@ class NewTransaction extends StatelessWidget {
       TextEditingController(); // controllers are used to keep track of the changes made in the field and save them.
   final amountController = TextEditingController();
   final Function addTx;
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+
+    if (enteredAmount <= 0 || enteredTitle.isEmpty) {
+      return;
+    }
+    addTx(
+      enteredTitle,
+      enteredAmount,
+    );
+  }
+
   NewTransaction(this.addTx);
   @override
   Widget build(BuildContext context) {
@@ -18,6 +31,8 @@ class NewTransaction extends StatelessWidget {
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
+              onSubmitted: (_)=>submitData(),
+
               // onChanged: (value) {
               //   titleInput = value;
               // },
@@ -25,17 +40,15 @@ class NewTransaction extends StatelessWidget {
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
+              keyboardType: TextInputType.number,
+              onSubmitted: (_) =>
+                  submitData, // we have to accept an argument but using it is not needed
               // onChanged: (value) {
               //   amountInput = value;
               // },
             ),
             FlatButton(
-              onPressed: () {
-                addTx(
-                  titleController.text,
-                  double.parse(amountController.text),
-                );
-              },
+              onPressed: submitData,
               child: Text('Add Transaction'),
               textColor: Colors.purple,
             )

@@ -11,8 +11,9 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 300,
-        child:ListView.builder( // list view builder while scrolling only shows the list that can be seen by the user and does not build the complete list. It is usable for long list because it is the optimum approach 
-          itemBuilder:(ctx,index) {
+        child: ListView.builder(
+          // list view builder while scrolling only shows the list that can be seen by the user and does not build the complete list. It is usable for long list because it is the optimum approach
+          itemBuilder: (ctx, index) {
             return Card(
               child: Row(children: <Widget>[
                 Container(
@@ -28,7 +29,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    'Rs ${transactions[index].amount}', // this form of writing a string is known as string interpolation
+                    'Rs ${transactions[index].amount.toStringAsFixed(2)}', // this form of writing a string is known as string interpolation
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -55,7 +56,6 @@ class TransactionList extends StatelessWidget {
             );
           },
           itemCount: transactions.length,
-        )
-        );
+        ));
   }
 }
