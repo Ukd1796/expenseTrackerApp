@@ -48,18 +48,18 @@ class _MyHomePageState extends State<MyHomePage> {
 //  late String titleInput;
 
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'task1',
-      amount: 69.90,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'task2',
-      amount: 99.90,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'task1',
+    //   amount: 69.90,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'task2',
+    //   amount: 99.90,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
